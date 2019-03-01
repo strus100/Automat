@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static int[] monety = {10, 6, 0, 0, 0, 0, 0, 0, 0};
+    public static int[] monety = {10, 6, 7, 0, 0, 0, 0, 0, 0};
 
 
     public static void main(String[] args) {
@@ -11,19 +11,18 @@ public class Main {
         Scanner s = new Scanner(System.in);
 
         while (true) {
-            Boolean guard;
+            Boolean guard = true;
             System.out.println("Podaj resztę do wydania");
             resztaD = s.nextDouble();
             for (int i = 0; i < nominaly.length; i++) {
-                guard = false;
                 LinkedList sym = symulacja(i, resztaD, nominaly);
                 for (int j = 0; j < sym.size(); j++) {
                     if ((int) sym.get(j) <= monety[j + i]) {
-                        guard = true;
+
                         if (j == sym.size() - 1 && guard == true) {
                             System.out.println("Mamy wynik");
                             wydaj(i,nominaly,resztaD,sym);
-
+guard = false;
                             //tutaj wykonaj wydanie reszty
                         }
                     }
@@ -55,7 +54,7 @@ public class Main {
     }
 
     public static void wydaj(int numerMonety, int[] nominaly, Double resztaD, LinkedList sym) {
-        int reszta = (int) (resztaD * 100);
+
         String wynik = "";
 
         for (int i = 0; i < sym.size(); i++) {
